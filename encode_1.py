@@ -4,7 +4,6 @@ import binascii
 from math import log10, sqrt
 from scipy import stats
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
 
@@ -14,7 +13,7 @@ print('Встраивание изображения в контейнер')
 
 
 def input_secret():
-    secret_file_name = input('введите имя файла с секретом:')
+    secret_file_name = input('Введите имя файла с секретом:')
     fin = open(secret_file_name, "rb")
     secret = fin.read()
     fin.close()
@@ -34,7 +33,7 @@ def input_secret():
 
 
 def input_container():
-    container_img_puth = input('введите имя файла-контейнера:')
+    container_img_puth = input('Введите имя файла-контейнера:')
     # преобразовать container в массив
     container_array = cv2.imread(container_img_puth)
     return container_array
@@ -295,8 +294,7 @@ def chart_3d(sensitivity, container_without_secret, bin_str, number_of_lsb, pear
     # Add a color bar which maps values to colors.
     fig.colorbar(surf, shrink=0.5, aspect=5)
     plt.show()
-    print(pearsons_r)
-    print('\nГрафик готов')
+    print(pearsons_r, '\nГрафик готов')
 
 secret, secret_file_name = input_secret()
 container = input_container()
@@ -316,9 +314,9 @@ if i < len(secret):
             save_output(container_and_secret, modified_container)
             mse, psnr, pearson_r = kpi_output(container, container_and_secret, secret, secret_file_name)
             print('Чувствительность уменьшена до', sensitivity)
-            chart_sensitivity(sensitivity, container, secret, number_of_lsb, mse, psnr, pearson_r)
-            chart_number_of_lsb_pearsons_r(sensitivity, container, secret, number_of_lsb, pearson_r)
-            chart_3d(sensitivity, container, secret, number_of_lsb, pearson_r)
+            # chart_sensitivity(sensitivity, container, secret, number_of_lsb, mse, psnr, pearson_r)
+            # chart_number_of_lsb_pearsons_r(sensitivity, container, secret, number_of_lsb, pearson_r)
+            # chart_3d(sensitivity, container, secret, number_of_lsb, pearson_r)
         else:
             print('\nНевозможно встроить. контейнер слишком мал')
     else:
@@ -326,6 +324,6 @@ if i < len(secret):
 else:
     save_output(container_and_secret, modified_container)
     mse, psnr, pearson_r = kpi_output(container, container_and_secret, secret, secret_file_name)
-    chart_sensitivity(sensitivity, container, secret, number_of_lsb, mse, psnr, pearson_r)
-    chart_number_of_lsb_pearsons_r(sensitivity, container, secret, number_of_lsb, pearson_r)
-    chart_3d(sensitivity, container, secret, number_of_lsb, pearson_r)
+    # chart_sensitivity(sensitivity, container, secret, number_of_lsb, mse, psnr, pearson_r)
+    # chart_number_of_lsb_pearsons_r(sensitivity, container, secret, number_of_lsb, pearson_r)
+    # chart_3d(sensitivity, container, secret, number_of_lsb, pearson_r)
