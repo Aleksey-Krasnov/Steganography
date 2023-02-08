@@ -310,7 +310,7 @@ sensitivity = input_sensitivity()
 container_and_secret, modified_container, i = encode_img(sensitivity, container, secret)
 
 if i < len(secret):
-    # i - количество бит секрета, встроенных в контейнер
+    # i - number of secret bits embedded in the container
     if sensitivity > 0:
         print('Need to reduce sensitivity')
         step = input_step()
